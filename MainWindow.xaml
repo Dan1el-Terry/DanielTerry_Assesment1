@@ -1,0 +1,104 @@
+﻿<Window x:Class="MovieLibrary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Movie Library" Height="600" Width="900">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ADD MOVIE -->
+        <GroupBox Header="Add Movie" Grid.Row="0" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Margin="2">
+                    <TextBlock Text="ID"/>
+                    <TextBox x:Name="TxtId" Width="80"/>
+                </StackPanel>
+
+                <StackPanel Margin="2">
+                    <TextBlock Text="Title"/>
+                    <TextBox x:Name="TxtTitle" Width="120"/>
+                </StackPanel>
+
+                <StackPanel Margin="2">
+                    <TextBlock Text="Director"/>
+                    <TextBox x:Name="TxtDirector" Width="120"/>
+                </StackPanel>
+
+                <StackPanel Margin="2">
+                    <TextBlock Text="Genre"/>
+                    <TextBox x:Name="TxtGenre" Width="80"/>
+                </StackPanel>
+
+                <StackPanel Margin="2">
+                    <TextBlock Text="Year"/>
+                    <TextBox x:Name="TxtYear" Width="60"/>
+                </StackPanel>
+
+                <Button Content="Add" Width="60" Margin="2" VerticalAlignment="Bottom"
+                Click="BtnAdd_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- SEARCH -->
+        <GroupBox Header="Search" Grid.Row="1" Margin="0,0,0,5">
+            <WrapPanel>
+                <TextBox x:Name="TxtSearch" Width="200" Margin="2"/>
+                <Button Content="By Title" Margin="2" Click="BtnSearchTitle_Click"/>
+                <Button Content="By ID" Margin="2" Click="BtnSearchId_Click"/>
+            </WrapPanel>
+        </GroupBox>
+
+        <!-- ACTIONS -->
+        <GroupBox Header="Actions" Grid.Row="2" Margin="0,0,0,5">
+            <WrapPanel>
+
+                <Button Content="Sort Title" Margin="2" Click="BtnSortTitle_Click"/>
+                <Button Content="Sort Year" Margin="2" Click="BtnSortYear_Click"/>
+
+                <StackPanel Margin="10,2,2,2">
+                    <TextBlock Text="Username"/>
+                    <TextBox x:Name="TxtUser" Width="120"/>
+                </StackPanel>
+
+                <Button Content="Borrow Selected" Margin="2" Click="BtnBorrow_Click"/>
+                <Button Content="Return Selected" Margin="2" Click="BtnReturn_Click"/>
+
+                <Button Content="Export JSON" Margin="2" Click="BtnExport_Click"/>
+                <Button Content="Import JSON" Margin="2" Click="BtnImport_Click"/>
+
+            </WrapPanel>
+        </GroupBox>
+
+        <!-- GRID -->
+        <DataGrid x:Name="MovieGrid"
+                  Grid.Row="3"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding MovieId}" Width="80"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="160"/>
+                <DataGridTextColumn Header="Director" Binding="{Binding Director}" Width="120"/>
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" Width="100"/>
+                <DataGridTextColumn Header="Year" Binding="{Binding ReleaseYear}" Width="70"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding IsAvailable}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- STATUS -->
+        <StatusBar Grid.Row="4">
+            <StatusBarItem>
+                <TextBlock x:Name="TxtStatus" Text="Ready"/>
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>
