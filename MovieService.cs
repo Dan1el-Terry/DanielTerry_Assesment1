@@ -19,13 +19,14 @@ namespace DanielTerry_Assesment1.Services
         // --- Add / Remove ---
 
         public bool AddMovie(Movie movie)
-        {
-            movie.MovieId = _nextId.ToString();
-            _nextId++;
+{
+    movie.MovieId = _nextId.ToString();
+    _nextId++;
 
-            _movies.Add(movie);
-            return true;
-        }
+    _movies.Add(movie);
+    _lookup[movie.MovieId] = movie;  // ADD THIS LINE
+    return true;
+}
 
         public List<Movie> GetAll() => _movies.GetAll().ToList();
 
@@ -133,5 +134,6 @@ namespace DanielTerry_Assesment1.Services
 
             return "Movie returned and available.";
         }
+
     }
 }
