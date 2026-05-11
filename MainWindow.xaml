@@ -4,6 +4,10 @@
         Title="Movie Library" Height="600" Width="900">
 
     <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="303*"/>
+            <ColumnDefinition Width="577*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -13,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <!-- ADD MOVIE -->
-        <GroupBox Header="Add Movie" Grid.Row="0" Margin="0,0,0,5">
+        <GroupBox Header="Add Movie" Grid.Row="0" Margin="0,0,0,5" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
 
                 <StackPanel Margin="2">
@@ -45,7 +49,7 @@
         </GroupBox>
 
         <!-- SEARCH -->
-        <GroupBox Header="Search" Grid.Row="1" Margin="0,0,0,5">
+        <GroupBox Header="Search" Grid.Row="1" Margin="0,0,0,29" Grid.ColumnSpan="2">
             <WrapPanel>
                 <TextBox x:Name="TxtSearch" Width="200" Margin="2"/>
                 <Button Content="By Title" Margin="2" Click="BtnSearchTitle_Click"/>
@@ -55,7 +59,7 @@
         </GroupBox>
 
         <!-- ACTIONS -->
-        <GroupBox Header="Actions" Grid.Row="2" Margin="0,0,0,5">
+        <GroupBox Header="Actions" Grid.Row="1" Margin="0,52,0,29" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <StackPanel>
 
                 <!-- SORT -->
@@ -98,11 +102,11 @@
 
         <!-- GRID -->
         <DataGrid x:Name="MovieGrid"
-                  Grid.Row="3"
+                  Grid.Row="2"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   SelectionMode="Single"
-                  SelectionChanged="MovieGrid_SelectionChanged">
+                  SelectionChanged="MovieGrid_SelectionChanged" Grid.ColumnSpan="2" Margin="0,102,0,0" Grid.RowSpan="2">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding MovieId}" Width="80"/>
@@ -116,7 +120,7 @@
         </DataGrid>
 
         <!-- STATUS -->
-        <StatusBar Grid.Row="4">
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="2" Margin="0,274,0,0" Grid.RowSpan="2">
             <StatusBarItem>
                 <TextBlock x:Name="TxtStatus" Text="Ready"/>
             </StatusBarItem>
