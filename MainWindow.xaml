@@ -52,8 +52,8 @@
         <GroupBox Header="Search" Grid.Row="1" Margin="0,0,0,29" Grid.ColumnSpan="2">
             <WrapPanel>
                 <TextBox x:Name="TxtSearch" Width="200" Margin="2"/>
-                <Button Content="By Title" Margin="2" Click="BtnSearchTitle_Click"/>
-                <Button Content="By ID" Margin="2" Click="BtnSearchId_Click"/>
+                <Button Content="By Title (Linear)" Margin="2" Click="BtnSearchTitle_Click"/>
+                <Button Content="By ID (Binary)" Margin="2" Click="BtnSearchId_Click"/>
                 <Button Content="Show All" Margin="2" Click="BtnShowAll_Click"/>
             </WrapPanel>
         </GroupBox>
@@ -64,8 +64,8 @@
 
                 <!-- SORT -->
                 <WrapPanel>
-                    <Button Content="Sort Title" Margin="2" Click="BtnSortTitle_Click"/>
-                    <Button Content="Sort Year" Margin="2" Click="BtnSortYear_Click"/>
+                    <Button Content="Sort Title (Bubble)" Margin="2" Click="BtnSortTitle_Click"/>
+                    <Button Content="Sort Year (Merge)" Margin="2" Click="BtnSortYear_Click"/>
                 </WrapPanel>
 
                 <!-- BORROW / RETURN -->
