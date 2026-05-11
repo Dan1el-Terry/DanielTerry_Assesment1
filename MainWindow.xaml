@@ -16,8 +16,6 @@
         <GroupBox Header="Add Movie" Grid.Row="0" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
 
-                
-
                 <StackPanel Margin="2">
                     <TextBlock Text="Title"/>
                     <TextBox x:Name="TxtTitle" Width="120"/>
@@ -38,8 +36,11 @@
                     <TextBox x:Name="TxtYear" Width="60"/>
                 </StackPanel>
 
-                <Button Content="Add" Width="60" Margin="2" VerticalAlignment="Bottom"
-                Click="BtnAdd_Click"/>
+                <Button Content="Add"
+                        Width="60"
+                        Margin="5"
+                        VerticalAlignment="Bottom"
+                        Click="BtnAdd_Click"/>
             </StackPanel>
         </GroupBox>
 
@@ -54,23 +55,39 @@
 
         <!-- ACTIONS -->
         <GroupBox Header="Actions" Grid.Row="2" Margin="0,0,0,5">
-            <WrapPanel>
+            <StackPanel>
 
-                <Button Content="Sort Title" Margin="2" Click="BtnSortTitle_Click"/>
-                <Button Content="Sort Year" Margin="2" Click="BtnSortYear_Click"/>
+                <!-- SORT -->
+                <WrapPanel>
+                    <Button Content="Sort Title" Margin="2" Click="BtnSortTitle_Click"/>
+                    <Button Content="Sort Year" Margin="2" Click="BtnSortYear_Click"/>
+                </WrapPanel>
 
-                <StackPanel Margin="10,2,2,2">
-                    <TextBlock Text="Username"/>
-                    <TextBox x:Name="TxtUser" Width="120"/>
+                <!-- BORROW -->
+                <StackPanel Orientation="Horizontal" Margin="10,5,0,5">
+
+                    <StackPanel Margin="2">
+                        <TextBlock Text="Movie ID"/>
+                        <TextBox x:Name="TxtBorrowMovieId" Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="2">
+                        <TextBlock Text="Person Name"/>
+                        <TextBox x:Name="TxtBorrowName" Width="120"/>
+                    </StackPanel>
+
+                    <Button Content="Borrow Movie"
+                            Margin="10,18,2,2"
+                            Click="BtnBorrow_Click"/>
                 </StackPanel>
 
-                <Button Content="Borrow Selected" Margin="2" Click="BtnBorrow_Click"/>
-                <Button Content="Return Selected" Margin="2" Click="BtnReturn_Click"/>
+                <!-- FILE -->
+                <WrapPanel>
+                    <Button Content="Export JSON" Margin="2" Click="BtnExport_Click"/>
+                    <Button Content="Import JSON" Margin="2" Click="BtnImport_Click"/>
+                </WrapPanel>
 
-                <Button Content="Export JSON" Margin="2" Click="BtnExport_Click"/>
-                <Button Content="Import JSON" Margin="2" Click="BtnImport_Click"/>
-
-            </WrapPanel>
+            </StackPanel>
         </GroupBox>
 
         <!-- GRID -->
@@ -86,7 +103,8 @@
                 <DataGridTextColumn Header="Director" Binding="{Binding Director}" Width="120"/>
                 <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" Width="100"/>
                 <DataGridTextColumn Header="Year" Binding="{Binding ReleaseYear}" Width="70"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding IsAvailable}" Width="100"/>
+                <DataGridTextColumn Header="Available" Binding="{Binding IsAvailable}" Width="90"/>
+                <DataGridTextColumn Header="Borrowed By" Binding="{Binding BorrowedBy}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
 

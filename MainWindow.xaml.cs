@@ -3,7 +3,7 @@ using DanielTerry_Assesment1.Models;
 using DanielTerry_Assesment1.Helpers;
 using DanielTerry_Assesment1.DataStructures;
 using DanielTerry_Assesment1.Services;
-using System.Collections.Generic;
+
 using System.Windows;
 
 namespace MovieLibrary

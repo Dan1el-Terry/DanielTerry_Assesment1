@@ -12,8 +12,8 @@ namespace DanielTerry_Assesment1.Models
         public required string Director { get; set; }
         public required string Genre { get; set; }
         public required int ReleaseYear { get; set; }
+        public bool IsAvailable { get; set; }
 
-        // Single, correct declaration (initialize to true/false as needed)
-        public bool IsAvailable { get; set; } = true;
+        public string BorrowedBy { get; set; } = "";
     }
 }

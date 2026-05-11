@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ namespace DanielTerry_Assesment1.Services
 {
     public class MovieService
     {
+        private Dictionary<string, Queue<string>> _waitLists = new();
         private int _nextId = 1;
         private MovieLinkedList _movies = new MovieLinkedList();
         private Hashtable _lookup = new Hashtable();                  // MovieID -> Movie
@@ -89,33 +90,48 @@ namespace DanielTerry_Assesment1.Services
 
         // --- Borrow / Return ---
 
-        public string BorrowMovie(string movieId, string userName)
+        public string BorrowMovie(string movieId, string personName)
         {
-            if (_lookup[movieId] is not Movie movie) return "Movie not found.";
+            var movie = SearchById(movieId);
+
+            if (movie == null)
+                return "Movie not found.";
+
             if (movie.IsAvailable)
             {
                 movie.IsAvailable = false;
-                return $"'{movie.Title}' borrowed by {userName}.";
+                movie.BorrowedBy = personName;
+                return $"Checked out to {personName}.";
             }
-            if (!_waitingQueues.ContainsKey(movieId))
-                _waitingQueues[movieId] = new Queue<string>();
-            _waitingQueues[movieId].Enqueue(userName);
-            return $"'{movie.Title}' unavailable. {userName} added to waiting list.";
+
+            if (!_waitLists.ContainsKey(movieId))
+                _waitLists[movieId] = new Queue<string>();
+
+            _waitLists[movieId].Enqueue(personName);
+
+            return $"{personName} added to queue.";
         }
 
         public string ReturnMovie(string movieId)
         {
-            if (_lookup[movieId] is not Movie movie) return "Movie not found.";
-            movie.IsAvailable = true;
-            if (_waitingQueues.TryGetValue(movieId, out var queue) && queue.Count > 0)
+            var movie = SearchById(movieId);
+
+            if (movie == null)
+                return "Movie not found.";
+
+            if (_waitLists.ContainsKey(movieId) && _waitLists[movieId].Count > 0)
             {
-                string next = queue.Dequeue();
-                movie.IsAvailable = false;
-                string msg = $"'{movie.Title}' auto-assigned to {next}.";
-                Notifications.Add(msg);
-                return msg;
+                var next = _waitLists[movieId].Dequeue();
+
+                movie.BorrowedBy = next;
+
+                return $"Returned → now checked out to {next}.";
             }
-            return $"'{movie.Title}' is now available.";
+
+            movie.IsAvailable = true;
+            movie.BorrowedBy = "";
+
+            return "Movie returned and available.";
         }
     }
 }
