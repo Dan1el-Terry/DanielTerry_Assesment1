@@ -16,10 +16,7 @@
         <GroupBox Header="Add Movie" Grid.Row="0" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
 
-                <StackPanel Margin="2">
-                    <TextBlock Text="ID"/>
-                    <TextBox x:Name="TxtId" Width="80"/>
-                </StackPanel>
+                
 
                 <StackPanel Margin="2">
                     <TextBlock Text="Title"/>

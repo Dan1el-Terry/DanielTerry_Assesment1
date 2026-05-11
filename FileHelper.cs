@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using WpfApp1.ProjectFiles.Models;
+using DanielTerry_Assesment1.Models;
 
-namespace WpfApp1.ProjectFiles.Helpers
+namespace DanielTerry_Assesment1.Helpers
 {
     public static class FileHelper
     {

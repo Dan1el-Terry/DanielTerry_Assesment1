@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using WpfApp1.ProjectFiles.DataStructures;
-using WpfApp1.ProjectFiles.Models;
+using DanielTerry_Assesment1.DataStructures;
+using DanielTerry_Assesment1.Models;
 
-namespace WpfApp1.ProjectFiles.Services
+namespace DanielTerry_Assesment1.Services
 {
     public class MovieService
     {
+        private int _nextId = 1;
         private MovieLinkedList _movies = new MovieLinkedList();
         private Hashtable _lookup = new Hashtable();                  // MovieID -> Movie
         private Dictionary<string, Queue<string>> _waitingQueues = new(); // MovieID -> user queue
@@ -18,9 +19,10 @@ namespace WpfApp1.ProjectFiles.Services
 
         public bool AddMovie(Movie movie)
         {
-            if (_lookup.ContainsKey(movie.MovieId)) return false;
+            movie.MovieId = _nextId.ToString();
+            _nextId++;
+
             _movies.Add(movie);
-            _lookup[movie.MovieId] = movie;
             return true;
         }
 

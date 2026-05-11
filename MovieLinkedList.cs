@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using WpfApp1.ProjectFiles.Models;
+using DanielTerry_Assesment1.Models;
 
-namespace WpfApp1.ProjectFiles.DataStructures
+namespace DanielTerry_Assesment1.DataStructures
 {
     public class MovieLinkedList : IEnumerable<Movie>
     {
